@@ -133,6 +133,11 @@ end_temp_set:
 	push($t0)		# push $t0 (number of disks) onto stack for move_tower procedure
 	
 	jal	move_tower	# jump and link to move_tower procedure
+	
+	pop($t0)
+	pop($t1)
+	pop($t2)
+	pop($t3)
 
 	# END OF PROGRAM, exit value
 	li 	$v0, 10
