@@ -2,8 +2,8 @@
 .data
 
 disk_prmpt:	.asciiz "How many disks would you like? "
-peg_strt_prmpt: .asciiz "\nWhich peg would you like to start on (A, B, or C)? "
-peg_dest_prmpt: .asciiz "\nWhich peg would you like to end on (A, B, or C)? "
+peg_strt_prmpt: .asciiz "\nWhich peg would you like to start on (A, B, or C [CAPS ONLY])? "
+peg_dest_prmpt: .asciiz "\nWhich peg would you like to end on (A, B, or C [CAPS ONLY])? "
 try_again:	.asciiz	"\nYour source and destination cannot be the same, choose a different destination. Source: "
 start_w_txt:	.asciiz "\n\nStarting with "
 on_peg_txt:	.asciiz " on peg "
