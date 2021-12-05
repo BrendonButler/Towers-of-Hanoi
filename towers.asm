@@ -5,7 +5,7 @@ disk_prmpt:	.asciiz "How many disks would you like? "
 peg_strt_prmpt: .asciiz "\nWhich peg would you like to start on (A, B, or C)? "
 peg_dest_prmpt: .asciiz "\nWhich peg would you like to end on (A, B, or C)? "
 try_again:	.asciiz	"\nYour source and destination cannot be the same, choose a different destination. Source: "
-start_w_txt:	.asciiz "\nStarting with "
+start_w_txt:	.asciiz "\n\nStarting with "
 on_peg_txt:	.asciiz " on peg "
 move_disk_txt:	.asciiz "Move disk from "
 to_txt:		.asciiz " to "
@@ -24,13 +24,13 @@ main:
 	addiu	$sp, $sp, 4
 .end_macro
 
-.macro 	print_str(%val)			# print string values to the console
+.macro 	print_str(%val)				# print string values to the console
 	la 	$a0, %val
 	li 	$v0,	4
 	syscall
 .end_macro
 
-.macro 	print_int(%val)			# print integer values to the console
+.macro 	print_int_at(%val)			# print integer values to the console
 	la 	$a0, (%val)
 	li 	$v0, 1
 	syscall
@@ -56,7 +56,7 @@ main:
 # %n = number of disks, %src = source peg, %dest = destination peg, %temp = temp peg
 .macro 	print_start(%n, %src, %dest, %temp)
 	print_str(start_w_txt)
-	print_int(%n)
+	print_int_at(%n)
 	print_str(on_peg_txt)
 	print_char_at(%src)
 	print_str(to_txt)
@@ -96,7 +96,7 @@ prompt_start_peg:
 try_again_dest:
 	print_str(try_again)			# print try_again message
 	print_char_at($t1)			# print source 
-	print_char('\n')
+	print_char('\n')			# print newline char
 	
 # prompt user for destination peg
 prompt_dest_peg:
@@ -134,6 +134,7 @@ end_temp_set:
 	
 	jal	move_tower	# jump and link to move_tower procedure
 	
+	# pop values backed up before recursive call
 	pop($t0)
 	pop($t1)
 	pop($t2)
