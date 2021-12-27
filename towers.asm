@@ -145,8 +145,8 @@ end_temp_set:
 	syscall
 	
 	# FUNCTIONS
-# MOVE TOWER | reg0 = n, reg1 = current disk, reg2 = source, reg3 = destination, reg4 = spare
-# moveTower(int n, char 
+# MOVE TOWER | reg0 = n, reg1 = source, reg2 = destination, reg3 = temp/spare
+# moveTower(int n, char arg0, char arg1, char arg2)
 # source, dest, and spare are the pegs for the disks to sit on
 move_tower:
 	push($ra)
